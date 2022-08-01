@@ -3,8 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <title>Finance application</title>
+    <script src="/static/finance/jquery-3.6.0.min.js"></script>
+    <script>
+        function get_accounts() {
+            $.getJSON( "/accounts", function( resp ) {
+                var accounts_div = $('<div />').appendTo('body');
+                accounts_div.attr('id', 'accounts');
+                $.each( resp['accounts'], function( key, value ) {
+                    console.log( key + " : " + JSON.stringify(value, null, 2) );
+                    var tmp_p = $('<p>').appendTo(accounts_div);
+                    var button = $('<button>').appendTo(tmp_p);
+                    button.click(function () {alert(value['id']);});
+                    button.text(value['name']);
+                });
+            });
+        }
+
+        $( document ).ready(function() {
+            get_accounts();
+        });
+    </script>
 </head>
 <body>
-
 </body>
 </html>

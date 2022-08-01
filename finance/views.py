@@ -10,3 +10,7 @@ def index(request):
 def accounts(request):
     accounts = list(Account.objects.all().values())
     return JsonResponse({'accounts': accounts})
+
+
+def account_view(request, account_id):
+    return JsonResponse({'test': account_id})
