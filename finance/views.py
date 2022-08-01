@@ -1,5 +1,12 @@
-from django.http import HttpResponse
+from django.http import JsonResponse
+from django.shortcuts import get_object_or_404, render
+from .models import Account
 
 
 def index(request):
-    return HttpResponse("Hello, world. You're at the polls index.")
+    return render(request, 'finance/index.html', {})
+
+
+def acounts(request):
+    accounts = Account.objects.all()
+    return JsonResponse({'foo': 'bar'})

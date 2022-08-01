@@ -9,7 +9,7 @@ class Account(models.Model):
 
 class Statement(models.Model):
     date_added = models.DateTimeField()
-    account = models.ForeignKey(Account)
+    account = models.ForeignKey(Account, on_delete=models.CASCADE)
     date_from = models.DateField(null=True, blank=True)
     date_to = models.DateField(null=True, blank=True)
 
@@ -26,8 +26,8 @@ class Tag(models.Model):
 
 
 class Transaction(models.Model):
-    account = models.ForeignKey(Account)
-    statement = models.ForeignKey(Statement)
+    account = models.ForeignKey(Account, on_delete=models.CASCADE)
+    statement = models.ForeignKey(Statement, on_delete=models.CASCADE)
     date = models.DateField()
     amount = models.IntegerField()
     description = models.TextField()
