@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Finance application</title>
     <script src="/static/finance/jquery-3.6.0.min.js"></script>
     <script>
@@ -13,10 +14,14 @@
                     console.log( key + " : " + JSON.stringify(value, null, 2) );
                     var tmp_p = $('<p>').appendTo(accounts_div);
                     var button = $('<button>').appendTo(tmp_p);
-                    button.click(function () {alert(value['id']);});
+                    button.click(function () {expand_account(value['id']);});
                     button.text(value['name']);
                 });
             });
+        }
+
+        function expand_account(id) {
+            console.log('opening account: ' + id);
         }
 
         $( document ).ready(function() {
