@@ -7,6 +7,6 @@ def index(request):
     return render(request, 'finance/index.html', {})
 
 
-def acounts(request):
-    accounts = Account.objects.all()
-    return JsonResponse({'foo': 'bar'})
+def accounts(request):
+    accounts = list(Account.objects.all().values())
+    return JsonResponse({'accounts': accounts})
