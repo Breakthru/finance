@@ -13,4 +13,5 @@ def accounts(request):
 
 
 def account_view(request, account_id):
-    return JsonResponse({'test': account_id})
+    acc = get_object_or_404(Account, id=account_id)
+    return JsonResponse({'name': acc.name, 'id': acc.id})
