@@ -6,4 +6,5 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('accounts', views.accounts, name='accounts'),
     path('accounts/<int:account_id>/', views.account_view, name='account_view'),
+    path('form', views.form_test, name='test'),
 ]
