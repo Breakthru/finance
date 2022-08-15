@@ -12,14 +12,13 @@ class Statement(models.Model):
     account = models.ForeignKey(Account, on_delete=models.CASCADE)
     date_from = models.DateField(null=True, blank=True)
     date_to = models.DateField(null=True, blank=True)
-
-    def __str__(self):
-        return str(self.date_to)
+    # raw data from online banking
+    document = models.BinaryField()
 
 
 class Tag(models.Model):
     """ tag transactions """
-    name = models.CharField(max_length=25)
+    name = models.CharField(max_length=255)
 
     def __str__(self):
         return str(self.name)

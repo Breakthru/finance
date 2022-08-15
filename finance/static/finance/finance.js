@@ -58,12 +58,9 @@ function expand_account(id) {
         // show upload form
         upload_button.hide();  // only append the form once
         var upload_form = $('<div>').appendTo(details_div);
-        upload_form.html(`
-        <form enctype="multipart/form-data" action="upload" method="post">
-          <input type="file" id="myFile" name="filename">
-          <input type="submit">
-        </form>
-        `);
-      })
+        $.get("/upload", success=function(data) {
+            upload_form.html(data);
+        });
+      });
     });
 }

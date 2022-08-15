@@ -1,20 +1,5 @@
-<html>
-  <head>
-    <title>
-    Marco's wonderful finance application suite
-    </title>
-    <style>
-
-    </style>
- </head>
-  <body>
-    <h1>Marcos finance app :: upload data for {{ account.name }}</h1>
-    {% if form %}
-        <form enctype="multipart/form-data" action="" method="post">
-        {% csrf_token %}
-        {{ form }}
-        <input type="submit" value="Submit" />
-        </form>
-    {% endif %}
-  </body>
-</html>
+<form action="/upload" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Submit">
+</form>

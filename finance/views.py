@@ -1,6 +1,7 @@
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, render
 from .models import Account
+from .forms import UploadFileForm
 
 
 def index(request):
@@ -16,11 +17,16 @@ def account_view(request, account_id):
     acc = get_object_or_404(Account, id=account_id)
     return JsonResponse({'name': acc.name, 'id': acc.id})
 
-def form_test(request):
-    from django import forms
-    class UploadFileForm(forms.Form):
-        file = forms.FileField()
 
-    form = UploadFileForm()
-    context = {'form': form, 'account': get_object_or_404(Account, id=1)}
-    return render(request, 'finance/upload.html', context)
+def upload(request):
+    if request.method == 'POST':
+        form = UploadFileForm(request.POST, request.FILES)
+        # check whether it's valid:
+        if form.is_valid():
+            # process the data in form.cleaned_data as required
+            print([l for l in request.FILES['file']])
+            return JsonResponse({'status': 'success'});
+    else:
+        # if a GET (or any other method) we'll create a blank form
+        form = UploadFileForm()
+    return render(request, 'finance/upload.html', {'form': form})
